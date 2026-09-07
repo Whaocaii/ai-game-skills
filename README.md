@@ -4,7 +4,7 @@
 
 面向 AI 辅助游戏设计与开发的个人 Skill 库。把游戏任务整理成 Agent 可以执行的输入约定、判断步骤、交付要求和检查方法，持续积累数值、系统、交互与表现方面的工作流。
 
-当前提供 **24 个游戏 Skill**。包含 22 个基础工作流，以及从已有工作迁入并整理的 QTE 与自由输入模块；由维护者主导方向，使用 AI 辅助编写与维护。编写说明见 [DEVELOPMENT.md](DEVELOPMENT.md)。
+当前提供 **24 个游戏 Skill**。包含 24 个基础工作流，由维护者主导方向，使用 AI 辅助编写与维护。编写说明见 [DEVELOPMENT.md](DEVELOPMENT.md)。
 
 ## 适合解决什么问题
 
@@ -85,7 +85,7 @@ python3 scripts/install.py all --dest ./work/skills-preview
 | [number-orchestrator](skills/number-orchestrator/SKILL.md) | 从体验目标到参数、模型、对照实验与配置 |
 | [number-shared](skills/number-shared/SKILL.md) | 单位、概率口径、分布、边界和敏感性复核 |
 
-### 玩法领域数值（9 个）
+### 玩法领域数值（11 个）
 
 | Skill | 关注重点 |
 | --- | --- |
@@ -98,6 +98,8 @@ python3 scripts/install.py all --dest ./work/skills-preview
 | [number-survivor-like](skills/number-survivor-like/SKILL.md) | 敌群压力、经验拾取和升级反馈 |
 | [number-tower-defense-like](skills/number-tower-defense-like/SKILL.md) | 路径暴露、部署预算、覆盖与波次 |
 | [number-turn-card-like](skills/number-turn-card-like/SKILL.md) | 行动经济、速度、阵容与养成替换 |
+| [build-instant-qte-h5](skills/build-instant-qte-h5/SKILL.md) | QTE 创意、真实操作、逐游戏数值校准、反自动成功和交付证据|
+| [free-input-output](skills/free-input-output/SKILL.md) | 自由输入、结果校验、超时降级、过期响应丢弃和原子结算|
 
 ### 状态与系统（4 个）
 
@@ -119,12 +121,6 @@ python3 scripts/install.py all --dest ./work/skills-preview
 | [survival-ui-guidelines](skills/survival-ui-guidelines/SKILL.md) | HUD、背包、制作和建造任务流 |
 | [build-pseudo-live2d-character](skills/build-pseudo-live2d-character/SKILL.md) | 单图角色分层、锚点、遮挡与动作降级 |
 
-### QTE 与自由输入（2 个）
-
-| Skill | 关注重点 |
-| --- | --- |
-| [build-instant-qte-h5](skills/build-instant-qte-h5/SKILL.md) | QTE 创意、真实操作、逐游戏数值校准、反自动成功和交付证据；模块版本 1.2.0 |
-| [free-input-output](skills/free-input-output/SKILL.md) | 自由输入、结果校验、超时降级、过期响应丢弃和原子结算；模块版本 1.1.0 |
 
 ```text
 使用 $build-instant-qte-h5，把接住飞来物的题材做成移动端 QTE。
