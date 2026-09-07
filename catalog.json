@@ -1,0 +1,170 @@
+{
+  "version": "0.1.0",
+  "groups": {
+    "games": [
+      "build-pseudo-live2d-character",
+      "day-night-cycle",
+      "day-time-system",
+      "fps-feel",
+      "game-skill-router",
+      "improve-arpg-hit-feel",
+      "inventory-system",
+      "number-adventure-like",
+      "number-card-roguelike",
+      "number-diablo-arpg-like",
+      "number-legend-like",
+      "number-orchestrator",
+      "number-shared",
+      "number-shmup-like",
+      "number-sim-management-like",
+      "number-survivor-like",
+      "number-tower-defense-like",
+      "number-turn-card-like",
+      "scene-transition",
+      "screen-shake-effects",
+      "stamina-system",
+      "survival-ui-guidelines"
+    ]
+  },
+  "skills": {
+    "build-pseudo-live2d-character": {
+      "title": "单图角色动效规划",
+      "dependencies": []
+    },
+    "day-night-cycle": {
+      "title": "日夜视觉曲线",
+      "dependencies": []
+    },
+    "day-time-system": {
+      "title": "逻辑时间与跨日事件",
+      "dependencies": []
+    },
+    "fps-feel": {
+      "title": "射击反馈与可控性",
+      "dependencies": []
+    },
+    "game-skill-router": {
+      "title": "游戏任务分派",
+      "dependencies": [
+        "build-pseudo-live2d-character",
+        "day-night-cycle",
+        "day-time-system",
+        "fps-feel",
+        "improve-arpg-hit-feel",
+        "inventory-system",
+        "number-adventure-like",
+        "number-card-roguelike",
+        "number-diablo-arpg-like",
+        "number-legend-like",
+        "number-orchestrator",
+        "number-shared",
+        "number-shmup-like",
+        "number-sim-management-like",
+        "number-survivor-like",
+        "number-tower-defense-like",
+        "number-turn-card-like",
+        "scene-transition",
+        "screen-shake-effects",
+        "stamina-system",
+        "survival-ui-guidelines"
+      ]
+    },
+    "improve-arpg-hit-feel": {
+      "title": "近战反馈诊断",
+      "dependencies": []
+    },
+    "inventory-system": {
+      "title": "背包状态与交易",
+      "dependencies": []
+    },
+    "number-adventure-like": {
+      "title": "冒险关卡节奏",
+      "dependencies": [
+        "number-orchestrator",
+        "number-shared"
+      ]
+    },
+    "number-card-roguelike": {
+      "title": "牌组构筑数值",
+      "dependencies": [
+        "number-orchestrator",
+        "number-shared"
+      ]
+    },
+    "number-diablo-arpg-like": {
+      "title": "刷宝与装备成长",
+      "dependencies": [
+        "number-orchestrator",
+        "number-shared"
+      ]
+    },
+    "number-legend-like": {
+      "title": "长线成长与资源经济",
+      "dependencies": [
+        "number-orchestrator",
+        "number-shared"
+      ]
+    },
+    "number-orchestrator": {
+      "title": "游戏数值实验流程",
+      "dependencies": [
+        "number-shared"
+      ]
+    },
+    "number-shared": {
+      "title": "数值口径与计算检查",
+      "dependencies": []
+    },
+    "number-shmup-like": {
+      "title": "弹幕压力与火力覆盖",
+      "dependencies": [
+        "number-orchestrator",
+        "number-shared"
+      ]
+    },
+    "number-sim-management-like": {
+      "title": "生产网络与经营回报",
+      "dependencies": [
+        "number-orchestrator",
+        "number-shared"
+      ]
+    },
+    "number-survivor-like": {
+      "title": "局内压力与成长反馈",
+      "dependencies": [
+        "number-orchestrator",
+        "number-shared"
+      ]
+    },
+    "number-tower-defense-like": {
+      "title": "塔防波次与部署取舍",
+      "dependencies": [
+        "number-orchestrator",
+        "number-shared"
+      ]
+    },
+    "number-turn-card-like": {
+      "title": "回合与阵容成长",
+      "dependencies": [
+        "number-orchestrator",
+        "number-shared"
+      ]
+    },
+    "scene-transition": {
+      "title": "转场状态与恢复",
+      "dependencies": []
+    },
+    "screen-shake-effects": {
+      "title": "相机冲击反馈",
+      "dependencies": []
+    },
+    "stamina-system": {
+      "title": "体力扣费与恢复",
+      "dependencies": []
+    },
+    "survival-ui-guidelines": {
+      "title": "生存游戏操作界面",
+      "dependencies": []
+    }
+  }
+}
