@@ -1,0 +1,468 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/qte.instant_intercept.authoring-1.1.0.json",
+  "title": "QTE Instant Intercept Authoring Spec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "template_ref",
+    "decision_status",
+    "identity",
+    "target",
+    "intent",
+    "theme_mapping",
+    "state",
+    "calibration_contract",
+    "mechanics",
+    "feedback_contract",
+    "fun_contract",
+    "difficulty",
+    "acceptance"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.1.0"},
+    "template_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": {"const": "qte.instant_intercept"},
+        "version": {"const": "1.0.0"}
+      }
+    },
+    "decision_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["open", "defaulted", "locked"],
+      "properties": {
+        "open": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "defaulted": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "locked": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "theme"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "title": {"type": "string", "minLength": 1},
+        "theme": {"type": "string", "minLength": 1}
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "platform", "orientation", "session_duration_param", "input_devices"],
+      "properties": {
+        "scope": {"enum": ["standalone", "embedded"]},
+        "platform": {"enum": ["mobile_h5", "browser_h5"]},
+        "orientation": {"enum": ["portrait", "landscape", "adaptive"]},
+        "session_duration_param": {"$ref": "#/$defs/id"},
+        "input_devices": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["touch", "pointer", "keyboard"]}
+        }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["player_fantasy", "primary_verb", "core_loop", "experience_claims"],
+      "properties": {
+        "player_fantasy": {"type": "string", "minLength": 1},
+        "primary_verb": {"$ref": "#/$defs/id"},
+        "core_loop": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "experience_claims": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["mechanism", "behavior", "feeling", "observable_signal"],
+            "properties": {
+              "mechanism": {"type": "string", "minLength": 1},
+              "behavior": {"type": "string", "minLength": 1},
+              "feeling": {"type": "string", "minLength": 1},
+              "observable_signal": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "theme_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["threat_source", "threat_object", "telegraph", "intercept_target", "player_action", "success_result", "failure_result"],
+      "properties": {
+        "threat_source": {"type": "string", "minLength": 1},
+        "threat_object": {"type": "string", "minLength": 1},
+        "telegraph": {"type": "string", "minLength": 1},
+        "intercept_target": {"type": "string", "minLength": 1},
+        "player_action": {"type": "string", "minLength": 1},
+        "success_result": {"type": "string", "minLength": 1},
+        "failure_result": {"type": "string", "minLength": 1}
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["variables"],
+      "properties": {
+        "variables": {"type": "array", "items": {"$ref": "#/$defs/stateVariable"}}
+      }
+    },
+    "calibration_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "parameters"],
+      "properties": {
+        "policy": {"const": "game_specific_not_global_defaults"},
+        "parameters": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/calibratedParameter"}
+        }
+      }
+    },
+    "mechanics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clock", "state_machine", "input_policy", "control_model", "cue_defaults", "cue_nodes"],
+      "properties": {
+        "clock": {"$ref": "#/$defs/clock"},
+        "state_machine": {"$ref": "#/$defs/stateMachine"},
+        "input_policy": {"$ref": "#/$defs/inputPolicy"},
+        "control_model": {"$ref": "#/$defs/controlModel"},
+        "cue_defaults": {"$ref": "#/$defs/cueDefaults"},
+        "cue_nodes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/cue"}}
+      }
+    },
+    "feedback_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["events", "fallbacks"],
+      "properties": {
+        "events": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/feedbackEvent"}},
+        "fallbacks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["audio_unavailable", "haptic_unavailable", "reduced_motion"],
+          "properties": {
+            "audio_unavailable": {"const": "keep_visual_feedback"},
+            "haptic_unavailable": {"const": "continue_without_haptic"},
+            "reduced_motion": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "fun_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_patterns", "anti_autoplay", "climax", "replay_policy"],
+      "properties": {
+        "action_patterns": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/actionPattern"}},
+        "anti_autoplay": {"$ref": "#/$defs/antiAutoplay"},
+        "climax": {"$ref": "#/$defs/climax"},
+        "replay_policy": {"$ref": "#/$defs/replayPolicy"}
+      }
+    },
+    "difficulty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phases", "change_policy"],
+      "properties": {
+        "phases": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/phase"}},
+        "change_policy": {"const": "behavior_first_with_readability_compensation"}
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["invariant_ids", "required_test_ids"],
+      "properties": {
+        "invariant_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "required_test_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]*$"},
+    "nullableId": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+    "stateVariable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "initial"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "type": {"enum": ["integer", "number", "boolean", "string"]},
+        "initial": {"anyOf": [{"type": "number"}, {"type": "boolean"}, {"type": "string"}]},
+        "min_param": {"$ref": "#/$defs/nullableId"},
+        "max_param": {"$ref": "#/$defs/nullableId"}
+      }
+    },
+    "calibratedParameter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "unit", "domain", "scope", "status", "value", "source", "constraints", "validation_signal"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "unit": {"enum": ["ms", "seconds", "css_px", "ratio", "count", "logical_units", "logical_units_per_second", "unitless"]},
+        "domain": {"enum": ["positive", "nonnegative", "signed", "ratio", "positive_integer", "nonnegative_integer"]},
+        "scope": {"type": "string", "minLength": 1},
+        "status": {"enum": ["open", "measured", "inherited"]},
+        "value": {"anyOf": [{"type": "number"}, {"type": "null"}]},
+        "source": {"type": "string", "minLength": 1},
+        "constraints": {"type": "string", "minLength": 1},
+        "validation_signal": {"type": "string", "minLength": 1}
+      }
+    },
+    "clock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "deadline_policy", "pause_policy", "background_policy", "calibration_offset_param"],
+      "properties": {
+        "source": {"const": "monotonic"},
+        "deadline_policy": {"const": "timestamp_comparison"},
+        "pause_policy": {"const": "freeze_timeline"},
+        "background_policy": {"const": "auto_pause"},
+        "calibration_offset_param": {"$ref": "#/$defs/id"}
+      }
+    },
+    "stateMachine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["initial_state", "states"],
+      "properties": {
+        "initial_state": {"const": "ready"},
+        "states": {"const": ["ready", "telegraph", "window_open", "resolved", "recovery", "disposed"]}
+      }
+    },
+    "inputPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_actions", "resolution", "early_input", "wrong_input", "multi_touch", "after_resolved", "candidate_matching"],
+      "properties": {
+        "allowed_actions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["tap_target", "timing_press", "swipe_direction", "swipe_path", "drag_intercept"]}
+        },
+        "resolution": {"enum": ["first_attempt", "first_valid_input"]},
+        "early_input": {"enum": ["ignore", "buffer", "miss", "penalty"]},
+        "wrong_input": {"enum": ["ignore", "miss", "penalty"]},
+        "multi_touch": {"const": "single_pointer"},
+        "after_resolved": {"const": "ignore"},
+        "candidate_matching": {"enum": ["earliest_legal_cue", "nearest_legal_cue", "explicit_priority"]}
+      }
+    },
+    "controlModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "difficulty_basis", "movement_authority"],
+      "properties": {
+        "type": {"enum": ["continuous_body", "direct_drag", "discrete_select", "gesture"]},
+        "difficulty_basis": {"type": "string", "minLength": 1},
+        "movement_authority": {"enum": ["simulation", "pointer_path", "selection_state", "gesture_recognizer"]}
+      }
+    },
+    "cueDefaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["telegraph_param", "input_window_param", "recovery_param", "minimum_target_size_param", "concurrency_mode", "concurrency_limit_param"],
+      "properties": {
+        "telegraph_param": {"$ref": "#/$defs/id"},
+        "input_window_param": {"$ref": "#/$defs/id"},
+        "recovery_param": {"$ref": "#/$defs/id"},
+        "minimum_target_size_param": {"$ref": "#/$defs/id"},
+        "concurrency_mode": {"enum": ["single", "controlled_overlap", "authored_choice"]},
+        "concurrency_limit_param": {"$ref": "#/$defs/id"}
+      }
+    },
+    "cue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "pattern_id", "subtype", "trigger", "content", "input", "timing", "judgements", "effects"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "pattern_id": {"$ref": "#/$defs/id"},
+        "subtype": {"enum": ["tap_target", "timing_gate", "swipe_direction", "swipe_path", "drag_intercept"]},
+        "trigger": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "at_param", "event"],
+          "properties": {
+            "type": {"enum": ["timeline", "event", "previous_resolved", "player_state"]},
+            "at_param": {"$ref": "#/$defs/nullableId"},
+            "event": {"$ref": "#/$defs/nullableId"}
+          }
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["threat", "telegraph", "target", "instruction"],
+          "properties": {
+            "threat": {"type": "string", "minLength": 1},
+            "telegraph": {"type": "string", "minLength": 1},
+            "target": {"type": "string", "minLength": 1},
+            "instruction": {"type": "string", "minLength": 1}
+          }
+        },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["action"],
+          "properties": {
+            "action": {"enum": ["tap_target", "timing_press", "swipe_direction", "swipe_path", "drag_intercept"]},
+            "target_id": {"$ref": "#/$defs/id"},
+            "direction": {"enum": ["up", "down", "left", "right", "any"]}
+          }
+        },
+        "timing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["telegraph_param", "window_open_offset_param", "window_close_offset_param"],
+          "properties": {
+            "telegraph_param": {"$ref": "#/$defs/id"},
+            "window_open_offset_param": {"$ref": "#/$defs/id"},
+            "window_close_offset_param": {"$ref": "#/$defs/id"}
+          }
+        },
+        "judgements": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/judgement"}},
+        "effects": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["perfect", "success", "miss"],
+          "properties": {
+            "perfect": {"type": "array", "items": {"$ref": "#/$defs/effect"}},
+            "success": {"type": "array", "items": {"$ref": "#/$defs/effect"}},
+            "miss": {"type": "array", "items": {"$ref": "#/$defs/effect"}}
+          }
+        }
+      }
+    },
+    "judgement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grade", "priority"],
+      "properties": {
+        "grade": {"enum": ["perfect", "success", "miss"]},
+        "priority": {"type": "integer", "minimum": 0},
+        "requirements": {"type": "array", "items": {"$ref": "#/$defs/requirement"}},
+        "otherwise": {"type": "boolean"}
+      }
+    },
+    "requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "parameter_refs"],
+      "properties": {
+        "type": {"enum": ["signed_timing_error", "target_match", "overlap_ratio", "direction_match", "path_sequence"]},
+        "parameter_refs": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "target_id": {"$ref": "#/$defs/id"},
+        "direction": {"enum": ["up", "down", "left", "right", "any"]},
+        "ordered_points": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/id"}}
+      }
+    },
+    "effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op"],
+      "properties": {
+        "op": {"enum": ["add", "set", "emit", "transition"]},
+        "target": {"type": "string", "minLength": 1},
+        "value": {"anyOf": [{"type": "number"}, {"type": "boolean"}, {"type": "string"}]},
+        "event": {"$ref": "#/$defs/id"}
+      }
+    },
+    "feedbackEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["on", "channels", "start_latency_param", "cancel_policy"],
+      "properties": {
+        "on": {"$ref": "#/$defs/id"},
+        "channels": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["visual", "audio", "haptic", "camera", "freeze_frame", "number"]}
+        },
+        "start_latency_param": {"$ref": "#/$defs/id"},
+        "cancel_policy": {"const": "cancel_and_restore_canonical_state"}
+      }
+    },
+    "actionPattern": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "semantic_action", "player_question", "skill_axes", "commitment", "mastery_signal", "failure_signal", "counterplay"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "semantic_action": {"type": "string", "minLength": 1},
+        "player_question": {"type": "string", "minLength": 1},
+        "skill_axes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["timing", "spatial", "direction", "selection", "path", "sequence", "commitment", "risk"]}
+        },
+        "commitment": {"type": "string", "minLength": 1},
+        "mastery_signal": {"type": "string", "minLength": 1},
+        "failure_signal": {"type": "string", "minLength": 1},
+        "counterplay": {"type": "string", "minLength": 1}
+      }
+    },
+    "antiAutoplay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passive_can_earn_highest_grade", "preposition_can_earn_highest_grade", "random_input_can_reliably_complete", "spatial_pressure_uses_instant_reposition", "evidence_plan"],
+      "properties": {
+        "passive_can_earn_highest_grade": {"const": false},
+        "preposition_can_earn_highest_grade": {"const": false},
+        "random_input_can_reliably_complete": {"const": false},
+        "spatial_pressure_uses_instant_reposition": {"const": false},
+        "evidence_plan": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "climax": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["applicable", "numeric_only", "uses_mastered_patterns", "mastered_pattern_ids", "player_behavior_change"],
+      "properties": {
+        "applicable": {"type": "boolean"},
+        "numeric_only": {"type": "boolean"},
+        "uses_mastered_patterns": {"type": "boolean"},
+        "mastered_pattern_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "player_behavior_change": {"type": "string", "minLength": 1}
+      }
+    },
+    "replayPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["qa_seed_policy", "runtime_variation_policy", "memorization_role"],
+      "properties": {
+        "qa_seed_policy": {"type": "string", "minLength": 1},
+        "runtime_variation_policy": {"type": "string", "minLength": 1},
+        "memorization_role": {"enum": ["intentional", "shared_challenge", "not_primary", "none"]}
+      }
+    },
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "role", "player_question", "pattern_ids", "change_kind", "pressure_changes", "compensations", "parameter_refs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "role": {"enum": ["tutorial", "establish", "variation", "recovery", "pressure", "climax"]},
+        "player_question": {"type": "string", "minLength": 1},
+        "pattern_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "change_kind": {"enum": ["teach", "practice", "variation", "choice", "combine", "recovery", "climax"]},
+        "pressure_changes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "compensations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "parameter_refs": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}
+      }
+    }
+  }
+}

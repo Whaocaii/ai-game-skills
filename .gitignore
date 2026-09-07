@@ -5,6 +5,11 @@ __pycache__/
 node_modules/
 .env
 .env.*
-!.env.example
 work/
 outputs/
+*.pem
+*.p12
+*.pfx
+*.key
+credentials*.json
+secrets*.json

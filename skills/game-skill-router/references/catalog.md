@@ -25,3 +25,5 @@
 | [fps-feel](../../fps-feel/SKILL.md) | 射击反馈与可控性 |
 | [survival-ui-guidelines](../../survival-ui-guidelines/SKILL.md) | 生存游戏操作界面 |
 | [build-pseudo-live2d-character](../../build-pseudo-live2d-character/SKILL.md) | 单图角色动效规划 |
+| [build-instant-qte-h5](../../build-instant-qte-h5/SKILL.md) | QTE 生成与交付校验 |
+| [free-input-output](../../free-input-output/SKILL.md) | 自由输入与可靠结算 |

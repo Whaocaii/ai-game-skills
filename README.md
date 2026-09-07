@@ -1,10 +1,10 @@
 # AI Game Skills
 
-**作者与维护者：Whaocaii** · **MIT License** · **版本：0.1.0**
+**作者与维护者：Whaocaii** · **MIT License** · **版本：0.2.0**
 
 面向 AI 辅助游戏设计与开发的个人 Skill 库。把游戏任务整理成 Agent 可以执行的输入约定、判断步骤、交付要求和检查方法，持续积累数值、系统、交互与表现方面的工作流。
 
-当前提供 **22 个游戏 Skill**。每个 Skill 均有独立的使用案例；正文由维护者主导方向，使用 AI 辅助重新编写。编写说明见 [DEVELOPMENT.md](DEVELOPMENT.md)。
+当前提供 **24 个游戏 Skill**。包含 22 个基础工作流，以及从已有工作迁入并整理的 QTE 与自由输入模块；由维护者主导方向，使用 AI 辅助编写与维护。编写说明见 [DEVELOPMENT.md](DEVELOPMENT.md)。
 
 ## 适合解决什么问题
 
@@ -14,7 +14,7 @@
 - 改善打击感、射击反馈、震屏、日夜表现和生存游戏 UI。
 - 规划单图角色的网页动效与素材需求。
 
-**当前是工作流初版，不是开箱即用的游戏引擎插件。** 本版没有随附旧版引擎模板、图片处理工具或自动生成游戏服务。需要实现时，Agent 结合项目代码与可用工具执行对应工作流。跨引擎运行、实际生图和完整游戏交付需单独验证。
+**本库提供工作流及配套校验工具。** QTE 附带规格与交付校验脚本，自由输入附带可测试的 JavaScript 控制器；本版没有随附游戏引擎、图片处理工具或模型服务。需要实现时，Agent 结合项目代码与可用工具执行对应工作流。跨引擎运行、实际生图和完整游戏交付需单独验证。
 
 ## 快速开始
 
@@ -30,7 +30,7 @@ python3 scripts/install.py --list
 # 预览完整安装
 python3 scripts/install.py all --dry-run
 
-# 安装全部 22 个 Skill
+# 安装全部 24 个 Skill
 python3 scripts/install.py all
 ```
 
@@ -44,6 +44,9 @@ python3 scripts/install.py number-survivor-like
 
 # 单独安装背包与体力
 python3 scripts/install.py inventory-system stamina-system
+
+# 安装 QTE 与自由输入
+python3 scripts/install.py build-instant-qte-h5 free-input-output
 
 # 先装到隔离目录试用
 python3 scripts/install.py all --dest ./work/skills-preview
@@ -116,6 +119,23 @@ python3 scripts/install.py all --dest ./work/skills-preview
 | [survival-ui-guidelines](skills/survival-ui-guidelines/SKILL.md) | HUD、背包、制作和建造任务流 |
 | [build-pseudo-live2d-character](skills/build-pseudo-live2d-character/SKILL.md) | 单图角色分层、锚点、遮挡与动作降级 |
 
+### QTE 与自由输入（2 个）
+
+| Skill | 关注重点 |
+| --- | --- |
+| [build-instant-qte-h5](skills/build-instant-qte-h5/SKILL.md) | QTE 创意、真实操作、逐游戏数值校准、反自动成功和交付证据；模块版本 1.2.0 |
+| [free-input-output](skills/free-input-output/SKILL.md) | 自由输入、结果校验、超时降级、过期响应丢弃和原子结算；模块版本 1.1.0 |
+
+```text
+使用 $build-instant-qte-h5，把接住飞来物的题材做成移动端 QTE。
+要求真实操作、失败与重试，并按实际试玩证据验收。
+
+使用 $free-input-output，为当前游戏接入玩家自由输入。
+保留项目现有结果 Schema，覆盖请求超时、重复点击与重开后的旧响应。
+```
+
+自由输入示例使用本地降级规则，可离线运行；关键词分类不等于模型理解。真实模型接入由项目服务端完成，API key 只从服务端环境读取，不进入前端、示例或仓库。见 [SECURITY.md](SECURITY.md)。
+
 ## 依赖与目录结构
 
 ```text
@@ -128,7 +148,7 @@ tests/                    仓库工具测试
 CHANGELOG.md              版本变化
 ```
 
-- 游戏总调度器安装时携带其余 21 个游戏模块，运行任务时只读取需要的部分。
+- 游戏总调度器安装时携带其余 23 个游戏模块，运行任务时只读取需要的部分。
 - 每个领域数值模块依赖 `number-orchestrator` 与 `number-shared`。
 - 数值总调度器只自动安装公共计算模块；单独使用它时，按任务安装所需领域 Skill。
 - 原本地系统配置不随仓库安装而修改，图片和引擎工具由实际项目提供。
@@ -138,9 +158,13 @@ CHANGELOG.md              版本变化
 ```bash
 python3 scripts/validate.py
 python3 -m unittest discover -s tests -v
+python3 -m unittest discover -s skills/build-instant-qte-h5/tests -v
+# 自由输入示例与测试需要 Node.js 18+
+node --test skills/free-input-output/tests/test-free-input.cjs
+node skills/free-input-output/examples/integration.js
 ```
 
-这些检查覆盖仓库完整性与安装行为，不代替 Skill 的实际任务评测。当前验证状态见 [VALIDATION.md](VALIDATION.md)。
+这些检查覆盖仓库完整性、安装行为、QTE 校验器及自由输入控制器，不代替 Skill 的实际任务评测。当前验证状态见 [VALIDATION.md](VALIDATION.md)。
 
 后续会继续积累 AI 游戏相关 Skill。新增模块应来自明确的问题与使用案例；先写清能力边界，再加入脚本或模板，避免只有泛化提示词。贡献流程见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 

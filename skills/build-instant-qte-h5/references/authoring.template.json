@@ -1,0 +1,504 @@
+{
+  "schema_version": "1.1.0",
+  "template_ref": {
+    "id": "qte.instant_intercept",
+    "version": "1.0.0"
+  },
+  "decision_status": {
+    "open": [
+      "calibration_contract.parameters",
+      "mechanics.control_model",
+      "mechanics.cue_nodes",
+      "fun_contract.action_patterns",
+      "fun_contract.climax",
+      "fun_contract.replay_policy",
+      "difficulty.phases"
+    ],
+    "defaulted": [
+      "mechanics.clock",
+      "mechanics.state_machine",
+      "fun_contract.anti_autoplay"
+    ],
+    "locked": [
+      "template_ref",
+      "mechanics.input_policy.after_resolved",
+      "calibration_contract.policy"
+    ]
+  },
+  "identity": {
+    "id": "game_qte_example",
+    "title": "{游戏名称}",
+    "theme": "{题材}"
+  },
+  "target": {
+    "scope": "standalone",
+    "platform": "mobile_h5",
+    "orientation": "portrait",
+    "session_duration_param": "session_duration",
+    "input_devices": [
+      "touch",
+      "pointer"
+    ]
+  },
+  "intent": {
+    "player_fantasy": "{玩家在危险瞬间靠自己的操作完成拦截}",
+    "primary_verb": "intercept",
+    "core_loop": [
+      "危险或机会出现",
+      "展示可读预警",
+      "开启输入窗口",
+      "玩家执行有承诺的语义动作",
+      "系统唯一判定",
+      "播放分级反馈",
+      "清理并进入下一模式"
+    ],
+    "experience_claims": [
+      {
+        "mechanism": "可读预警、真实操作成本与分级判定",
+        "behavior": "玩家识别威胁，决定动作并承担位移、方向或时机承诺",
+        "feeling": "惊险但可掌握的临场救场感",
+        "observable_signal": "玩家第二局能主动修正时机、路径或目标选择，而不是只背固定序列"
+      }
+    ]
+  },
+  "theme_mapping": {
+    "threat_source": "{危险从哪里出现}",
+    "threat_object": "{需要拦截的对象}",
+    "telegraph": "{危险出现前的提示}",
+    "intercept_target": "{正确目标、方向、路径或交点}",
+    "player_action": "{点击、滑动或拖拽动作}",
+    "success_result": "{成功后发生什么}",
+    "failure_result": "{失败后发生什么并如何归因}"
+  },
+  "state": {
+    "variables": []
+  },
+  "calibration_contract": {
+    "policy": "game_specific_not_global_defaults",
+    "parameters": [
+      {
+        "id": "session_duration",
+        "unit": "seconds",
+        "domain": "positive",
+        "scope": "session",
+        "status": "open",
+        "value": null,
+        "source": "由目标场景、核心模式数量和真人试玩节奏决定",
+        "constraints": "为正，并足以容纳已声明阶段与转换；不以统一局长为边界",
+        "validation_signal": "玩家在疲劳前经历教学、变化、恢复与高潮，并愿意立即重玩"
+      },
+      {
+        "id": "input_latency_compensation",
+        "unit": "ms",
+        "domain": "signed",
+        "scope": "input",
+        "status": "open",
+        "value": null,
+        "source": "由目标设备的事件时间戳与实测输入延迟决定",
+        "constraints": "只能补偿测得的系统性偏差，不能把技能误差整体抹平",
+        "validation_signal": "相同语义输入在目标设备上边界归属稳定"
+      },
+      {
+        "id": "telegraph_base",
+        "unit": "ms",
+        "domain": "positive",
+        "scope": "cue",
+        "status": "open",
+        "value": null,
+        "source": "由预警信息量、动作类型和低分位识别时间决定",
+        "constraints": "预警先于开窗，且不通过无意义等待伪造可读性",
+        "validation_signal": "玩家能在开窗前说清目标和动作"
+      },
+      {
+        "id": "input_window_base",
+        "unit": "ms",
+        "domain": "positive",
+        "scope": "cue",
+        "status": "open",
+        "value": null,
+        "source": "由动作完成成本、设备延迟和目标玩家实测分布决定",
+        "constraints": "窗口为正，并覆盖合法动作而不允许被动或随机策略稳定成功",
+        "validation_signal": "失败来自可修正操作，而非不可达窗口"
+      },
+      {
+        "id": "recovery_base",
+        "unit": "ms",
+        "domain": "nonnegative",
+        "scope": "cue",
+        "status": "open",
+        "value": null,
+        "source": "由前一模式负荷、反馈收束和下一预警需要决定",
+        "constraints": "不得阻塞逻辑推进，也不得形成没有主动反馈的空等",
+        "validation_signal": "恢复降低负荷但不形成无意义等待"
+      },
+      {
+        "id": "target_size_base",
+        "unit": "css_px",
+        "domain": "positive",
+        "scope": "cue",
+        "status": "open",
+        "value": null,
+        "source": "由目标设备、手指遮挡、操作精度与画面布局实测决定",
+        "constraints": "交互区域位于安全区，视觉大小与逻辑命中区域一致",
+        "validation_signal": "目标可辨识且命中误差符合所声明技能轴"
+      },
+      {
+        "id": "concurrency_limit",
+        "unit": "count",
+        "domain": "positive_integer",
+        "scope": "phase",
+        "status": "open",
+        "value": null,
+        "source": "由并发是否产生选择而非无解重叠，并经可达性验证决定",
+        "constraints": "为可实现的有限整数，所有强制组合都可达或有明确安全取舍",
+        "validation_signal": "每个同时出现的强制 cue 都有合法处理或明确取舍"
+      },
+      {
+        "id": "cue_trigger_offset",
+        "unit": "ms",
+        "domain": "nonnegative",
+        "scope": "cue.tutorial_intercept",
+        "status": "open",
+        "value": null,
+        "source": "由上一个节点退出与当前 tell 阶段的节奏决定",
+        "constraints": "不早于上一个节点清理完成，也不制造出生即判定",
+        "validation_signal": "cue 不会出生即判定，也不产生空等"
+      },
+      {
+        "id": "cue_window_open_offset",
+        "unit": "ms",
+        "domain": "nonnegative",
+        "scope": "cue.tutorial_intercept",
+        "status": "open",
+        "value": null,
+        "source": "由 tell 完成和玩家可开始动作的时刻决定",
+        "constraints": "不早于玩家可理解预警的时刻，并早于关闭偏移",
+        "validation_signal": "预警先于开窗且边界可复现"
+      },
+      {
+        "id": "cue_window_close_offset",
+        "unit": "ms",
+        "domain": "positive",
+        "scope": "cue.tutorial_intercept",
+        "status": "open",
+        "value": null,
+        "source": "由动作完成成本与容错目标决定",
+        "constraints": "晚于开窗偏移，且从最不利合法起点仍存在完成路径",
+        "validation_signal": "最不利合法起点仍存在可达路径"
+      },
+      {
+        "id": "perfect_timing_tolerance",
+        "unit": "ms",
+        "domain": "positive",
+        "scope": "judgement",
+        "status": "open",
+        "value": null,
+        "source": "由高手实测误差分布和设备抖动决定",
+        "constraints": "严格包含于基础成功范围，只区分 mastery 而不成为通关前提",
+        "validation_signal": "最高评级能区分熟练度但不是通关前提"
+      },
+      {
+        "id": "success_timing_tolerance",
+        "unit": "ms",
+        "domain": "positive",
+        "scope": "judgement",
+        "status": "open",
+        "value": null,
+        "source": "由基础可达性和目标完成率实测决定",
+        "constraints": "覆盖合法动作成本，且 Early/Late 边界连续无空洞",
+        "validation_signal": "基础成功边界公平且 Early/Late 原因可解释"
+      },
+      {
+        "id": "overlap_tolerance",
+        "unit": "ratio",
+        "domain": "ratio",
+        "scope": "judgement",
+        "status": "open",
+        "value": null,
+        "source": "由目标形状、手指遮挡和碰撞可读性决定",
+        "constraints": "位于合法比例域，且视觉接触与逻辑重叠含义一致",
+        "validation_signal": "视觉接触与逻辑命中一致"
+      },
+      {
+        "id": "feedback_start_latency",
+        "unit": "ms",
+        "domain": "nonnegative",
+        "scope": "feedback",
+        "status": "open",
+        "value": null,
+        "source": "由目标设备事件到首个可见反馈的实测决定",
+        "constraints": "反馈可归因到当前动作，并在下一冲突预警前收束或降级",
+        "validation_signal": "玩家把反馈归因到刚完成的动作，且不遮挡下一预警"
+      }
+    ]
+  },
+  "mechanics": {
+    "clock": {
+      "source": "monotonic",
+      "deadline_policy": "timestamp_comparison",
+      "pause_policy": "freeze_timeline",
+      "background_policy": "auto_pause",
+      "calibration_offset_param": "input_latency_compensation"
+    },
+    "state_machine": {
+      "initial_state": "ready",
+      "states": [
+        "ready",
+        "telegraph",
+        "window_open",
+        "resolved",
+        "recovery",
+        "disposed"
+      ]
+    },
+    "input_policy": {
+      "allowed_actions": [
+        "drag_intercept",
+        "swipe_direction"
+      ],
+      "resolution": "first_attempt",
+      "early_input": "ignore",
+      "wrong_input": "miss",
+      "multi_touch": "single_pointer",
+      "after_resolved": "ignore",
+      "candidate_matching": "earliest_legal_cue"
+    },
+    "control_model": {
+      "type": "direct_drag",
+      "difficulty_basis": "真实手指位移、路径保持、目标选择和时机承诺；不得把点击瞬移后的车道距离当作难度",
+      "movement_authority": "pointer_path"
+    },
+    "cue_defaults": {
+      "telegraph_param": "telegraph_base",
+      "input_window_param": "input_window_base",
+      "recovery_param": "recovery_base",
+      "minimum_target_size_param": "target_size_base",
+      "concurrency_mode": "authored_choice",
+      "concurrency_limit_param": "concurrency_limit"
+    },
+    "cue_nodes": [
+      {
+        "id": "tutorial_intercept",
+        "pattern_id": "commit_intercept",
+        "subtype": "drag_intercept",
+        "trigger": {
+          "type": "timeline",
+          "at_param": "cue_trigger_offset",
+          "event": null
+        },
+        "content": {
+          "threat": "{危险对象}",
+          "telegraph": "{显示来源、方向和到达点的预警}",
+          "target": "{拦截区域}",
+          "instruction": "{用题材动作说明如何拦截}"
+        },
+        "input": {
+          "action": "drag_intercept",
+          "target_id": "intercept_zone_01"
+        },
+        "timing": {
+          "telegraph_param": "telegraph_base",
+          "window_open_offset_param": "cue_window_open_offset",
+          "window_close_offset_param": "cue_window_close_offset"
+        },
+        "judgements": [
+          {
+            "grade": "perfect",
+            "priority": 2,
+            "requirements": [
+              {
+                "type": "signed_timing_error",
+                "parameter_refs": [
+                  "perfect_timing_tolerance"
+                ]
+              },
+              {
+                "type": "overlap_ratio",
+                "parameter_refs": [
+                  "overlap_tolerance"
+                ],
+                "target_id": "intercept_zone_01"
+              }
+            ]
+          },
+          {
+            "grade": "success",
+            "priority": 1,
+            "requirements": [
+              {
+                "type": "signed_timing_error",
+                "parameter_refs": [
+                  "success_timing_tolerance"
+                ]
+              },
+              {
+                "type": "target_match",
+                "parameter_refs": [],
+                "target_id": "intercept_zone_01"
+              }
+            ]
+          },
+          {
+            "grade": "miss",
+            "priority": 0,
+            "otherwise": true
+          }
+        ],
+        "effects": {
+          "perfect": [
+            {"op": "emit", "event": "qte_perfect"}
+          ],
+          "success": [
+            {"op": "emit", "event": "qte_success"}
+          ],
+          "miss": [
+            {"op": "emit", "event": "qte_miss"}
+          ]
+        }
+      }
+    ]
+  },
+  "feedback_contract": {
+    "events": [
+      {
+        "on": "qte_perfect",
+        "channels": ["visual", "audio", "camera", "number"],
+        "start_latency_param": "feedback_start_latency",
+        "cancel_policy": "cancel_and_restore_canonical_state"
+      },
+      {
+        "on": "qte_success",
+        "channels": ["visual", "audio", "number"],
+        "start_latency_param": "feedback_start_latency",
+        "cancel_policy": "cancel_and_restore_canonical_state"
+      },
+      {
+        "on": "qte_miss",
+        "channels": ["visual", "audio", "camera"],
+        "start_latency_param": "feedback_start_latency",
+        "cancel_policy": "cancel_and_restore_canonical_state"
+      }
+    ],
+    "fallbacks": {
+      "audio_unavailable": "keep_visual_feedback",
+      "haptic_unavailable": "continue_without_haptic",
+      "reduced_motion": "用颜色、轮廓、形状、文字和静态位移方向表达同一 verdict，不依赖大幅震动或粒子"
+    }
+  },
+  "fun_contract": {
+    "action_patterns": [
+      {
+        "id": "commit_intercept",
+        "semantic_action": "观察落点后沿真实路径完成拦截",
+        "player_question": "我现在该去哪里，并在什么时候承诺这次拦截？",
+        "skill_axes": ["timing", "spatial", "path", "commitment"],
+        "commitment": "动作开始后需要完成真实位移或路径，不能在命中时刻自动吸附",
+        "mastery_signal": "玩家能缩短绕行并把 signed timing error 收向目标时刻",
+        "failure_signal": "明确区分过早、过晚、路径错误和目标错误",
+        "counterplay": "预警给出足够信息，玩家可选择更安全路径或放弃高风险目标"
+      },
+      {
+        "id": "priority_intercept",
+        "semantic_action": "从多个可读威胁中选择需要处理的目标",
+        "player_question": "哪个目标必须先处理，哪个风险可以暂时承受？",
+        "skill_axes": ["selection", "risk", "timing"],
+        "commitment": "选择一个目标会占用本次动作，不能同时自动处理全部威胁",
+        "mastery_signal": "玩家根据后果和到达成本调整优先级，而不是固定点同一区域",
+        "failure_signal": "明确区分选错优先级与执行失误",
+        "counterplay": "风险收益在行动前可见，并保留安全成功路径"
+      }
+    ],
+    "anti_autoplay": {
+      "passive_can_earn_highest_grade": false,
+      "preposition_can_earn_highest_grade": false,
+      "random_input_can_reliably_complete": false,
+      "spatial_pressure_uses_instant_reposition": false,
+      "evidence_plan": [
+        "用无输入、提前占位和随机输入策略分别跑完整局，确认无法取得最高评级或稳定完成",
+        "若距离是难度变量，记录最不利合法起点到目标的真实移动轨迹与可达性"
+      ]
+    },
+    "climax": {
+      "applicable": true,
+      "numeric_only": false,
+      "uses_mastered_patterns": true,
+      "mastered_pattern_ids": [
+        "commit_intercept",
+        "priority_intercept"
+      ],
+      "player_behavior_change": "玩家需要在已学会的路径拦截与目标优先级之间做组合判断，而不是只面对更短窗口"
+    },
+    "replay_policy": {
+      "qa_seed_policy": "QA 固定 run seed 复现同一 pattern 序列与输入归属",
+      "runtime_variation_policy": "正式对局从受约束 pattern bag 生成新的 run seed；共享挑战模式才固定共同 seed",
+      "memorization_role": "not_primary"
+    }
+  },
+  "difficulty": {
+    "phases": [
+      {
+        "id": "teach_commit",
+        "role": "tutorial",
+        "player_question": "预警指向哪里，我怎样完成一次真实拦截？",
+        "pattern_ids": ["commit_intercept"],
+        "change_kind": "teach",
+        "pressure_changes": [],
+        "compensations": ["首次失败立即解释对应技能轴并允许重试"],
+        "parameter_refs": ["telegraph_base", "input_window_base", "target_size_base"]
+      },
+      {
+        "id": "introduce_choice",
+        "role": "variation",
+        "player_question": "多个威胁出现时，我应该先处理哪一个？",
+        "pattern_ids": ["priority_intercept"],
+        "change_kind": "choice",
+        "pressure_changes": ["加入后果可见的目标优先级选择"],
+        "compensations": ["保持预警清晰，并保留安全选择"],
+        "parameter_refs": ["concurrency_limit"]
+      },
+      {
+        "id": "active_recovery",
+        "role": "recovery",
+        "player_question": "我可以怎样收取反馈并预判下一轮？",
+        "pattern_ids": ["commit_intercept"],
+        "change_kind": "recovery",
+        "pressure_changes": ["降低失败风险"],
+        "compensations": ["保留轻量奖励收取或下一模式预告，避免纯等待"],
+        "parameter_refs": ["recovery_base"]
+      },
+      {
+        "id": "combine_mastery",
+        "role": "climax",
+        "player_question": "我能否在移动承诺中同时处理目标优先级？",
+        "pattern_ids": ["commit_intercept", "priority_intercept"],
+        "change_kind": "climax",
+        "pressure_changes": ["重组已教学 pattern，并让选择与执行互相影响"],
+        "compensations": ["不首次引入新主操作，所有强制路径继续可达"],
+        "parameter_refs": ["telegraph_base", "input_window_base", "concurrency_limit"]
+      }
+    ],
+    "change_policy": "behavior_first_with_readability_compensation"
+  },
+  "acceptance": {
+    "invariant_ids": [
+      "resolve_once",
+      "result_before_feedback",
+      "cleanup_all_paths",
+      "honest_control_model",
+      "no_passive_perfect",
+      "runtime_values_from_calibration"
+    ],
+    "required_test_ids": [
+      "boundary_input",
+      "duplicate_input",
+      "pause_resume",
+      "passive_policy",
+      "preposition_policy",
+      "random_policy",
+      "phase_fingerprint",
+      "climax_combination",
+      "runtime_seed_variation",
+      "retry_cleanup"
+    ]
+  }
+}

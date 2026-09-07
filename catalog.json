@@ -1,11 +1,13 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "groups": {
     "games": [
+      "build-instant-qte-h5",
       "build-pseudo-live2d-character",
       "day-night-cycle",
       "day-time-system",
       "fps-feel",
+      "free-input-output",
       "game-skill-router",
       "improve-arpg-hit-feel",
       "inventory-system",
@@ -27,6 +29,10 @@
     ]
   },
   "skills": {
+    "build-instant-qte-h5": {
+      "title": "瞬时反应 QTE H5",
+      "dependencies": []
+    },
     "build-pseudo-live2d-character": {
       "title": "单图角色动效规划",
       "dependencies": []
@@ -43,13 +49,19 @@
       "title": "射击反馈与可控性",
       "dependencies": []
     },
+    "free-input-output": {
+      "title": "游戏自由输入与结算",
+      "dependencies": []
+    },
     "game-skill-router": {
       "title": "游戏任务分派",
       "dependencies": [
+        "build-instant-qte-h5",
         "build-pseudo-live2d-character",
         "day-night-cycle",
         "day-time-system",
         "fps-feel",
+        "free-input-output",
         "improve-arpg-hit-feel",
         "inventory-system",
         "number-adventure-like",

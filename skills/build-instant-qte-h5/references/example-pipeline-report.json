@@ -1,0 +1,287 @@
+{
+  "report_version": "1.2.0",
+  "run_id": "run-example-001",
+  "run_mode": "full_run",
+  "control": {
+    "skill_revision": "1.2.0",
+    "schema_hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "spec_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "build_hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "attempt": 1
+  },
+  "contract": {
+    "creative_schema_preserved": true,
+    "coder_interface_modified": false,
+    "single_agent": true,
+    "assumptions": [
+      "调用方未提供既有创意 Schema，因此使用 Skill fallback Authoring Schema"
+    ]
+  },
+  "artifacts": {
+    "spec": "frozen-working-spec.json",
+    "schema": "authoring.schema.json",
+    "build_dir": "game",
+    "entrypoint": "game/index.html",
+    "archive": "game.tar.gz",
+    "report": "qte-pipeline-report.json",
+    "evidence": [
+      "frozen-working-spec.json",
+      "creative-spec.json",
+      "evidence/static-check.json",
+      "evidence/browser-run-manifest.json",
+      "evidence/start.png",
+      "evidence/active-cue.png",
+      "evidence/perfect.png",
+      "evidence/success.png",
+      "evidence/miss.png",
+      "evidence/result.png",
+      "evidence/reduced-motion.png",
+      "evidence/input-events.json",
+    "evidence/design-validation.json",
+    "evidence/play-validation.json",
+      "evidence/effect-reset.json",
+      "evidence/browser-console.json",
+      "evidence/archive-retest.json"
+    ]
+  },
+  "static_check": {
+    "status": "passed",
+    "errors": [],
+    "warnings": [],
+    "warning_reviews": [],
+    "evidence": ["evidence/static-check.json"]
+  },
+  "test_environment": {
+    "status": "passed",
+    "tested_at": "2026-07-24T17:00:00+08:00",
+    "base_url": "http://127.0.0.1:8000/",
+    "browser": "chromium",
+    "browser_version": "example-version",
+    "viewport": {"width": 390, "height": 844},
+    "has_touch": true,
+    "device_scale_factor": 3,
+    "evidence": ["evidence/browser-run-manifest.json", "evidence/browser-console.json", "evidence/input-events.json"]
+  },
+  "receipts": {
+    "author": {
+      "status": "passed",
+      "schema_hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "spec_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "build_hash": null,
+      "evidence": ["frozen-working-spec.json", "creative-spec.json"]
+    },
+    "implement": {
+      "status": "passed",
+      "schema_hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "spec_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "build_hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "evidence": ["evidence/static-check.json"]
+    },
+    "verify": {
+      "status": "passed",
+      "schema_hash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "spec_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "build_hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "evidence": ["evidence/browser-console.json", "evidence/input-events.json"]
+    }
+  },
+  "stages": [
+    {"id": "author", "status": "passed", "attempts": 1, "evidence": ["frozen-working-spec.json", "creative-spec.json"], "notes": []},
+    {"id": "implement", "status": "passed", "attempts": 1, "evidence": ["evidence/static-check.json"], "notes": []},
+    {"id": "static_check", "status": "passed", "attempts": 1, "evidence": ["evidence/static-check.json"], "notes": []},
+    {"id": "browser_test", "status": "passed", "attempts": 1, "evidence": ["evidence/browser-console.json", "evidence/input-events.json"], "notes": []},
+    {"id": "repair", "status": "skipped", "attempts": 0, "evidence": [], "notes": ["首次验收通过"]},
+    {"id": "deliver", "status": "passed", "attempts": 1, "evidence": ["evidence/archive-retest.json"], "notes": []}
+  ],
+  "hard_gates": [
+    {"id": "h_boot", "status": "passed", "expected": "HTTP 打开后出现可操作界面", "actual": "开始按钮可见且可点击", "evidence": ["evidence/start.png"]},
+    {"id": "h_flow", "status": "passed", "expected": "完成开始到重玩的闭环", "actual": "结算后成功进入新一局", "evidence": ["evidence/result.png"]},
+    {"id": "h_input", "status": "passed", "expected": "移动端主操作有效且不滚动页面", "actual": "Pointer 输入只触发一次语义动作", "evidence": ["evidence/input-events.json"]},
+    {"id": "h_action_meaning", "status": "passed", "expected": "操作对结果有因果作用且没有瞬移伪难度", "actual": "无输入、提前占位和随机输入均无法取得最高评级；空间压力使用真实拖拽轨迹", "evidence": ["evidence/play-validation.json"]},
+    {"id": "h_success", "status": "passed", "expected": "成功分支正确结算并反馈", "actual": "窗口内输入产生 success 和一次分数变化", "evidence": ["evidence/success.png"]},
+    {"id": "h_miss", "status": "passed", "expected": "无输入或错误输入进入 miss", "actual": "超时产生一次 miss 并说明原因", "evidence": ["evidence/miss.png"]},
+    {"id": "h_resolve_once", "status": "passed", "expected": "单个 cue 只结算一次", "actual": "连续输入只产生一次结果和一次分数变化", "evidence": ["evidence/input-events.json"]},
+    {"id": "h_recovery", "status": "passed", "expected": "结果后继续下一 cue 或结算", "actual": "成功和 miss 后均正常恢复", "evidence": ["evidence/input-events.json"]},
+    {"id": "h_retry", "status": "passed", "expected": "重玩清空旧状态", "actual": "新一局分数、计时和 cue 均复位", "evidence": ["evidence/result.png"]},
+    {"id": "h_console", "status": "passed", "expected": "关键路径无未捕获异常和 404", "actual": "控制台和失败请求列表均为空", "evidence": ["evidence/browser-console.json"]},
+    {"id": "h_mobile", "status": "passed", "expected": "390×844 触摸视口无遮挡和溢出", "actual": "关键控件和玩法区域均可见", "evidence": ["evidence/active-cue.png"]},
+    {"id": "h_reload", "status": "passed", "expected": "HTTP 刷新后可重新开始", "actual": "刷新回到初始界面并可开始", "evidence": ["evidence/start.png"]},
+    {"id": "h_archive", "status": "passed", "expected": "安全解包归档后同一入口可启动", "actual": "归档与 build 一致且解包后的 HTTP 复测通过", "evidence": ["evidence/archive-retest.json"]}
+  ],
+  "soft_gates": [
+    {"id": "s_first_action_clarity", "status": "passed", "expected": "首次强制动作前理解目标、动作和开始时机", "actual": "教学首屏演示目标、拖拽动作与开窗提示", "evidence": ["evidence/start.png"]},
+    {"id": "s_telegraph", "status": "passed", "expected": "预警先于输入窗口且可读", "actual": "玩家能从轨迹提示判断目标", "evidence": ["evidence/active-cue.png"]},
+    {"id": "s_action_feel", "status": "passed", "expected": "动作有技能轴、承诺成本和可修正失败", "actual": "拖拽路径和目标选择都改变结果，第二局可按失败轴修正", "evidence": ["evidence/play-validation.json"]},
+    {"id": "s_phase_variety", "status": "passed", "expected": "阶段改变玩家问题而不只是数值", "actual": "建立、选择、主动恢复和高潮具有不同 fingerprint", "evidence": ["evidence/play-validation.json"]},
+    {"id": "s_climax", "status": "passed", "expected": "高潮组合已学 pattern 且不是纯数值加速", "actual": "高潮组合路径拦截与目标优先级", "evidence": ["evidence/play-validation.json"]},
+    {"id": "s_feedback", "status": "passed", "expected": "三种结果立即分级反馈且重试后效果清零", "actual": "perfect、success、miss 均有独立视觉，重试后效果计数为零", "evidence": ["evidence/perfect.png", "evidence/success.png", "evidence/miss.png", "evidence/effect-reset.json"]},
+    {"id": "s_failure_trace", "status": "passed", "expected": "失败能说明可修正原因", "actual": "miss 文案区分过早与过晚", "evidence": ["evidence/miss.png"]},
+    {"id": "s_difficulty", "status": "passed", "expected": "主路径可达、QA seed 可复现且参数变化有行为理由与补偿", "actual": "阶段参数 diff、可达性和 QA seed 重放均通过", "evidence": ["evidence/design-validation.json"]},
+    {"id": "s_hud", "status": "passed", "expected": "HUD 不遮挡提示、轨迹和目标区", "actual": "390×844 下玩法区域完整可见", "evidence": ["evidence/active-cue.png"]},
+    {"id": "s_accessibility", "status": "passed", "expected": "静音、非纯颜色与 reduced-motion 下仍可理解", "actual": "reduced-motion 实跑关闭震动粒子后仍可区分结果并完成流程", "evidence": ["evidence/reduced-motion.png", "evidence/success.png", "evidence/miss.png"]},
+    {"id": "s_replay", "status": "passed", "expected": "结算解释表现并提供重试，QA seed 与正式变化策略分离", "actual": "结算展示评级和失误原因；正式对局使用受约束 pattern bag 变化", "evidence": ["evidence/result.png", "evidence/play-validation.json"]}
+  ],
+  "issues": [],
+  "design_validation": {
+    "scope": "standalone",
+    "qa_seed": 241107,
+    "qa_replay_status": "passed",
+    "qa_replay_evidence": ["evidence/design-validation.json"],
+    "phase_diffs": [
+      {
+        "from": "establish",
+        "to": "variation",
+        "parameter_changes": ["trajectory_speed", "telegraph_ms"],
+        "behavior_change": "从单目标路径拦截变为后果可见的目标优先级选择",
+        "compensations": ["保留完整轨迹预警并扩大安全选择的辨识差异"],
+        "evidence": ["evidence/design-validation.json"]
+      }
+    ],
+    "reachability": {
+      "passed": true,
+      "checked_cases": 24,
+      "unavoidable_overlap_count": 0,
+      "evidence": ["evidence/design-validation.json"]
+    },
+    "feedback": {
+      "verdict_before_feedback": true,
+      "outcomes_visualized": ["perfect", "success", "miss"],
+      "reset_after_exit": true,
+      "reentry_tested": true,
+      "reduced_motion_tested": true,
+      "outcome_evidence": {
+        "perfect": "evidence/perfect.png",
+        "success": "evidence/success.png",
+        "miss": "evidence/miss.png"
+      },
+      "cleanup_evidence": "evidence/effect-reset.json",
+      "reduced_motion_evidence": "evidence/reduced-motion.png"
+    }
+  },
+  "play_validation": {
+    "action_patterns": [
+      {
+        "id": "commit_intercept",
+        "player_question": "该去哪里并在何时承诺拦截？",
+        "skill_axes": ["timing", "path", "commitment"],
+        "commitment": "拖拽开始后承担真实路径与释放时机",
+        "mastery_signal": "第二局能缩短绕行并修正 Early/Late",
+        "evidence": ["evidence/play-validation.json"]
+      },
+      {
+        "id": "priority_intercept",
+        "player_question": "哪个威胁必须先处理？",
+        "skill_axes": ["selection", "risk"],
+        "commitment": "选择一个目标会占用本次动作",
+        "mastery_signal": "能根据后果与到达成本改变优先级",
+        "evidence": ["evidence/play-validation.json"]
+      }
+    ],
+    "anti_autoplay": {
+      "passive_can_earn_highest_grade": false,
+      "preposition_can_earn_highest_grade": false,
+      "random_input_can_reliably_complete": false,
+      "spatial_pressure_uses_instant_reposition": false,
+      "trials": [
+        {
+          "policy": "passive",
+          "run_seed": "qa-passive-example",
+          "attempts": 1,
+          "completions": 0,
+          "highest_grade_count": 0,
+          "reliable_completion": false,
+          "input_trace_hash": "sha256:passive-input-example",
+          "outcome_sequence_hash": "sha256:passive-outcome-example",
+          "evidence": ["evidence/play-validation.json"]
+        },
+        {
+          "policy": "preposition",
+          "run_seed": "qa-preposition-example",
+          "attempts": 1,
+          "completions": 0,
+          "highest_grade_count": 0,
+          "reliable_completion": false,
+          "input_trace_hash": "sha256:preposition-input-example",
+          "outcome_sequence_hash": "sha256:preposition-outcome-example",
+          "evidence": ["evidence/play-validation.json"]
+        },
+        {
+          "policy": "random",
+          "run_seed": "qa-random-example",
+          "attempts": 1,
+          "completions": 0,
+          "highest_grade_count": 0,
+          "reliable_completion": false,
+          "input_trace_hash": "sha256:random-input-example",
+          "outcome_sequence_hash": "sha256:random-outcome-example",
+          "evidence": ["evidence/play-validation.json"]
+        }
+      ],
+      "position_trace": {
+        "applicable": true,
+        "input_path_hash": "sha256:pointer-path-example",
+        "authority_trace_hash": "sha256:authority-path-example",
+        "direct_position_writes": 0,
+        "all_steps_explained_by_control_model": true,
+        "evidence": ["evidence/play-validation.json"]
+      },
+      "evidence": ["evidence/play-validation.json"]
+    },
+    "phase_fingerprints": [
+      {
+        "phase_id": "establish",
+        "role": "establish",
+        "pattern_ids": ["commit_intercept"],
+        "fingerprint": "drag_intercept + direct_path + no_choice + trajectory_tell + no_recovery",
+        "numeric_only_change": false,
+        "recovery_role": "none",
+        "evidence": ["evidence/play-validation.json"]
+      },
+      {
+        "phase_id": "variation",
+        "role": "variation",
+        "pattern_ids": ["priority_intercept"],
+        "fingerprint": "drag_intercept + priority_choice + visible_risk + trajectory_tell + active_recovery",
+        "numeric_only_change": false,
+        "recovery_role": "结果收取与下一目标预告",
+        "evidence": ["evidence/play-validation.json"]
+      },
+      {
+        "phase_id": "climax",
+        "role": "climax",
+        "pattern_ids": ["commit_intercept", "priority_intercept"],
+        "fingerprint": "path_commitment + priority_choice + safe_or_bonus + layered_tell + no_recovery",
+        "numeric_only_change": false,
+        "recovery_role": "终局结算",
+        "evidence": ["evidence/play-validation.json"]
+      }
+    ],
+    "climax": {
+      "applicable": true,
+      "numeric_only": false,
+      "uses_mastered_patterns": true,
+      "mastered_pattern_ids": ["commit_intercept", "priority_intercept"],
+      "player_behavior_change": "在真实路径承诺中同步处理目标优先级",
+      "evidence": ["evidence/play-validation.json"]
+    },
+    "replay": {
+      "qa_seed_policy": "固定 run seed 复现同一 pattern 序列",
+      "runtime_variation_policy": "普通正式对局使用受约束 pattern bag 生成新 run seed",
+      "unintended_fixed_sequence": false,
+      "evidence": ["evidence/play-validation.json"]
+    },
+    "playtest_observations": [
+      {
+        "source": "human",
+        "session_id": "anonymous-playtest-example",
+        "first_run_observation": "首次在双目标段追逐最近目标，忽略了撞船后果提示",
+        "second_run_change": "第二局先读投影轨迹再承诺拖拽，主动放弃低风险目标",
+        "clutch_or_failure_moment": "高潮中先改线再释放，擦边救下真正撞船目标",
+        "replay_choice": "replayed",
+        "evidence": ["evidence/play-validation.json"]
+      }
+    ]
+  },
+  "blocked_reason": null,
+  "final_status": "passed"
+}

@@ -1,0 +1,116 @@
+{
+  "snapshot_date": "2026-07-26",
+  "snapshot_timezone": "Asia/Shanghai",
+  "policy": "read_and_abstract_only_no_source_or_asset_copy",
+  "repositories": [
+    {
+      "repo": "phaserjs/phaser",
+      "url": "https://github.com/phaserjs/phaser",
+      "stars_snapshot": 40024,
+      "license_spdx": "MIT",
+      "archived": false,
+      "commit": "41be1e462bc600064e498cba370bfa8c5c055a22",
+      "use": ["event_timestamp", "honest_movement", "camera_feedback_isolation"]
+    },
+    {
+      "repo": "libgdx/libgdx",
+      "url": "https://github.com/libgdx/libgdx",
+      "stars_snapshot": 25254,
+      "license_spdx": "Apache-2.0",
+      "archived": false,
+      "commit": "9a44e78b1ee6df1dfac6d42c52d7242b522e4cc9",
+      "use": ["input_queue", "move_coalescing", "temporal_action_lifecycle"]
+    },
+    {
+      "repo": "godotengine/godot",
+      "url": "https://github.com/godotengine/godot",
+      "stars_snapshot": 114614,
+      "license_spdx": "MIT",
+      "archived": false,
+      "commit": "159701651ad44335691dcbd632d8074307074c7b",
+      "use": ["input_edges", "independent_clocks", "camera_reset"]
+    },
+    {
+      "repo": "HaxeFlixel/flixel",
+      "url": "https://github.com/HaxeFlixel/flixel",
+      "stars_snapshot": 2195,
+      "license_spdx": "MIT",
+      "archived": false,
+      "commit": "ba033b3bc743f0cf3d1c5ca5add8f8c023928cb2",
+      "use": ["one_shot_input", "effect_cancellation", "state_reset"]
+    },
+    {
+      "repo": "NoelFB/Celeste",
+      "url": "https://github.com/NoelFB/Celeste",
+      "stars_snapshot": 3980,
+      "license_spdx": "MIT",
+      "archived": true,
+      "historical_reference_only": true,
+      "commit": "1b0ce45c75e05649ae91b44a8bb6b196684e4352",
+      "use": ["intent_preserving_grace", "action_state"]
+    },
+    {
+      "repo": "ppy/osu",
+      "url": "https://github.com/ppy/osu",
+      "stars_snapshot": 18740,
+      "license_spdx": "MIT",
+      "archived": false,
+      "commit": "5da71008b082d1a77e4bb301dc98886f1f24b895",
+      "use": ["ordered_hit_windows", "break_nodes", "base_success_bonus_separation"]
+    },
+    {
+      "repo": "stepmania/stepmania",
+      "url": "https://github.com/stepmania/stepmania",
+      "stars_snapshot": 2085,
+      "license_spdx": "MIT",
+      "archived": false,
+      "commit": "21bb8dcd6c7e3782f23d5f4e01b6ee4c82cccc71",
+      "use": ["signed_timing_error", "early_late_feedback", "cue_ownership"]
+    },
+    {
+      "repo": "FunkinCrew/Funkin",
+      "url": "https://github.com/FunkinCrew/Funkin",
+      "stars_snapshot": 3690,
+      "license_spdx": "Apache-2.0",
+      "archived": false,
+      "commit": "45a0d33a5843ba33b4414e36f32ac1400030e3ee",
+      "use": ["continuous_accuracy", "discrete_rating", "pattern_event_track"]
+    },
+    {
+      "repo": "Quaver/Quaver",
+      "url": "https://github.com/Quaver/Quaver",
+      "stars_snapshot": 789,
+      "license_spdx": "MPL-2.0",
+      "archived": false,
+      "commit": "892bc8ae5dc68d1d7c38c1db31048367c7e39541",
+      "use": ["replaceable_judgement_profile", "base_success_boundary"]
+    },
+    {
+      "repo": "vittorioromeo/SSVOpenHexagon",
+      "url": "https://github.com/vittorioromeo/SSVOpenHexagon",
+      "stars_snapshot": 655,
+      "license_spdx": "AFL-3.0",
+      "archived": false,
+      "commit": "1e2cba71242ab149d548abdb54d3bceb92c33922",
+      "use": ["named_action_grammar", "movement_cost_spacing", "pattern_exit"]
+    },
+    {
+      "repo": "taisei-project/taisei",
+      "url": "https://github.com/taisei-project/taisei",
+      "stars_snapshot": 1591,
+      "license_spdx": "MIT",
+      "archived": false,
+      "commit": "70563e942db868be97a3c314b4ce4dac9b270d70",
+      "use": ["tell_commit_resolve_exit", "layered_climax_timeline"]
+    },
+    {
+      "repo": "00-Evan/shattered-pixel-dungeon",
+      "url": "https://github.com/00-Evan/shattered-pixel-dungeon",
+      "stars_snapshot": 6358,
+      "license_spdx": "GPL-3.0",
+      "archived": false,
+      "commit": "7b8b845a76fe76c6b7c031ae9e570852411f56db",
+      "use": ["shuffle_bag", "constrained_randomness", "rng_isolation"]
+    }
+  ]
+}

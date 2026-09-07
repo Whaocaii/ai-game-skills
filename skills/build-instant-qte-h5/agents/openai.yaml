@@ -1,0 +1,6 @@
+interface:
+  display_name: "瞬时 QTE H5 整链路"
+  short_description: "生成好玩、有操作感并完成完整试玩验收的 QTE H5"
+  default_prompt: "使用 $build-instant-qte-h5，把给定题材构建成有真实操作感、数值按本局校准并经过浏览器试玩验收的移动端瞬时 QTE H5。"
+policy:
+  allow_implicit_invocation: false
