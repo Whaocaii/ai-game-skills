@@ -1,6 +1,6 @@
 ---
 name: number-legend-like
-description: "用于长线角色成长、强化、掉落、交易与竞争层级的数值设计；需要结合实际规则验证，不预设通用最优参数。"
+description: "用于长线角色成长、强化、掉落、交易与竞争层级的数值设计；需要结合实际规则验证，不预设通用最优参数。 Balance long-term RPG progression, upgrades, loot, trading and competitive power tiers."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

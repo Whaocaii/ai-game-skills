@@ -1,6 +1,6 @@
 ---
 name: screen-shake-effects
-description: "设计震屏、短暂停顿与视觉冲击，处理叠加和减弱动态效果设置。用于冲击反馈，不改变命中规则。"
+description: "设计震屏、短暂停顿与视觉冲击，处理叠加和减弱动态效果设置。用于冲击反馈，不改变命中规则。 Design camera shake, hit-stop and impact feedback with stacking limits and reduced-motion settings."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

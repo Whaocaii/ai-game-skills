@@ -1,6 +1,6 @@
 ---
 name: number-shared
-description: "检查游戏数值中的单位、概率、分布、边界和敏感性，解释公式的适用前提。用于模型复核或其他数值模块的公共计算支持。"
+description: "检查游戏数值中的单位、概率、分布、边界和敏感性，解释公式的适用前提。用于模型复核或其他数值模块的公共计算支持。 Review units, probability, distributions, bounds and sensitivity in game balance formulas."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

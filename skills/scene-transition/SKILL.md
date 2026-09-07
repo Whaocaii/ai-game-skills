@@ -1,6 +1,6 @@
 ---
 name: scene-transition
-description: "实现或修复场景切换的加载、遮挡、输入交接和失败恢复。用于转场与加载流程，不默认要求特定引擎。"
+description: "实现或修复场景切换的加载、遮挡、输入交接和失败恢复。用于转场与加载流程，不默认要求特定引擎。 Implement or diagnose scene loading, input handoff, transition effects and failure recovery."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

@@ -1,6 +1,6 @@
 ---
 name: game-skill-router
-description: "根据游戏任务选择需要的数值、系统、表现或界面模块，并推进具体交付。用于跨系统游戏需求，不用于单纯讨论所有可用 Skill。"
+description: "根据游戏任务选择需要的数值、系统、表现或界面模块，并推进具体交付。用于跨系统游戏需求，不用于单纯讨论所有可用 Skill。 Select the smallest relevant game design, balancing, systems or game-feel skill set for a concrete task."
 metadata:
   author: "Whaocaii"
   revision: "0.2.0"

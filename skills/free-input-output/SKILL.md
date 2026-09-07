@@ -1,6 +1,6 @@
 ---
 name: free-input-output
-description: 为游戏接入自由文本行动，定义模型与规则边界、输入到结果的完整结算、等待与超时恢复、重复提交保护和重玩过期丢弃。用于自由行动、custom action、settle-all 或模型参与的互动游戏；不是单纯增加聊天框。
+description: "为游戏接入自由文本行动，定义模型与规则边界、输入到结果的完整结算、等待与超时恢复、重复提交保护和重玩过期丢弃。用于自由行动、custom action、settle-all 或模型参与的互动游戏；不是单纯增加聊天框。 Integrate natural-language player actions with LLM result validation, timeouts, duplicate-submit protection and atomic settlement; not just chat UI."
 metadata:
   author: Whaocaii
   revision: "1.1.0"

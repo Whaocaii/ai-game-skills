@@ -1,6 +1,6 @@
 ---
 name: number-tower-defense-like
-description: "用于塔防的路径暴露、火力覆盖、目标选择和波次资源数值；需要结合实际规则验证，不预设通用最优参数。"
+description: "用于塔防的路径暴露、火力覆盖、目标选择和波次资源数值；需要结合实际规则验证，不预设通用最优参数。 Balance tower defense waves, path exposure, targeting, coverage and resource budgets."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

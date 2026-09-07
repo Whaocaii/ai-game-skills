@@ -1,6 +1,6 @@
 ---
 name: number-card-roguelike
-description: "用于卡牌肉鸽的抽牌、费用、构筑选择和战斗收益；需要结合实际规则验证，不预设通用最优参数。"
+description: "用于卡牌肉鸽的抽牌、费用、构筑选择和战斗收益；需要结合实际规则验证，不预设通用最优参数。 Balance deckbuilding roguelikes: card draw, energy costs, deck choices and combat rewards."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

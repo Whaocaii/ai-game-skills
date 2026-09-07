@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "groups": {
     "games": [
       "build-instant-qte-h5",
@@ -31,27 +31,83 @@
   "skills": {
     "build-instant-qte-h5": {
       "title": "瞬时反应 QTE H5",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Quick-time event H5 games",
+      "description_en": "Build and validate mobile HTML5 quick-time event (QTE) games with real player input and browser playtest evidence.",
+      "keywords": [
+        "QTE",
+        "quick-time-event",
+        "HTML5 game",
+        "移动端小游戏",
+        "瞬时反应"
+      ],
+      "path": "skills/build-instant-qte-h5/SKILL.md"
     },
     "build-pseudo-live2d-character": {
       "title": "单图角色动效规划",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Pseudo-Live2D character motion",
+      "description_en": "Plan browser character animation from a single illustration: breathing, blinking and layered motion; not a Cubism model generator.",
+      "keywords": [
+        "pseudo-live2d",
+        "character animation",
+        "sprite animation",
+        "单图动效"
+      ],
+      "path": "skills/build-pseudo-live2d-character/SKILL.md"
     },
     "day-night-cycle": {
       "title": "日夜视觉曲线",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Day and night visuals",
+      "description_en": "Design day-night lighting, weather transitions and readable environmental colors.",
+      "keywords": [
+        "day-night cycle",
+        "lighting",
+        "weather",
+        "昼夜表现"
+      ],
+      "path": "skills/day-night-cycle/SKILL.md"
     },
     "day-time-system": {
       "title": "逻辑时间与跨日事件",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Game simulation clock",
+      "description_en": "Design game time, time scale, pause, day rollover and offline progression; use for simulation logic.",
+      "keywords": [
+        "game clock",
+        "simulation time",
+        "offline progression",
+        "跨日结算"
+      ],
+      "path": "skills/day-time-system/SKILL.md"
     },
     "fps-feel": {
       "title": "射击反馈与可控性",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "FPS weapon feel",
+      "description_en": "Improve FPS shooting feel: recoil, spread, hit feedback and reload timing.",
+      "keywords": [
+        "FPS",
+        "gun feel",
+        "recoil",
+        "枪械手感"
+      ],
+      "path": "skills/fps-feel/SKILL.md"
     },
     "free-input-output": {
       "title": "游戏自由输入与结算",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Free-text game actions",
+      "description_en": "Integrate natural-language player actions with LLM result validation, timeouts, duplicate-submit protection and atomic settlement; not just chat UI.",
+      "keywords": [
+        "free input",
+        "natural language actions",
+        "LLM game",
+        "自由输入",
+        "原子结算"
+      ],
+      "path": "skills/free-input-output/SKILL.md"
     },
     "game-skill-router": {
       "title": "游戏任务分派",
@@ -79,104 +135,266 @@
         "screen-shake-effects",
         "stamina-system",
         "survival-ui-guidelines"
-      ]
+      ],
+      "title_en": "Game development skill routing",
+      "description_en": "Select the smallest relevant game design, balancing, systems or game-feel skill set for a concrete task.",
+      "keywords": [
+        "agent skills",
+        "game development",
+        "skill routing",
+        "游戏策划"
+      ],
+      "path": "skills/game-skill-router/SKILL.md"
     },
     "improve-arpg-hit-feel": {
       "title": "近战反馈诊断",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "ARPG melee hit feedback",
+      "description_en": "Diagnose melee combat responsiveness, hit impact, hit reactions and recovery timing.",
+      "keywords": [
+        "ARPG",
+        "combat feel",
+        "hit feedback",
+        "打击感"
+      ],
+      "path": "skills/improve-arpg-hit-feel/SKILL.md"
     },
     "inventory-system": {
       "title": "背包状态与交易",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Inventory and item transactions",
+      "description_en": "Design inventory capacity, item identity, atomic transactions, equipment exchange and persistence.",
+      "keywords": [
+        "inventory system",
+        "item management",
+        "atomic transaction",
+        "背包系统"
+      ],
+      "path": "skills/inventory-system/SKILL.md"
     },
     "number-adventure-like": {
       "title": "冒险关卡节奏",
       "dependencies": [
         "number-orchestrator",
         "number-shared"
-      ]
+      ],
+      "title_en": "Adventure level balancing",
+      "description_en": "Balance adventure, platformer and puzzle levels through checkpoints, resource pressure and progression.",
+      "keywords": [
+        "level design",
+        "platformer",
+        "difficulty curve",
+        "冒险关卡"
+      ],
+      "path": "skills/number-adventure-like/SKILL.md"
     },
     "number-card-roguelike": {
       "title": "牌组构筑数值",
       "dependencies": [
         "number-orchestrator",
         "number-shared"
-      ]
+      ],
+      "title_en": "Roguelike deckbuilder balancing",
+      "description_en": "Balance deckbuilding roguelikes: card draw, energy costs, deck choices and combat rewards.",
+      "keywords": [
+        "deckbuilder",
+        "roguelike",
+        "card balance",
+        "卡牌肉鸽"
+      ],
+      "path": "skills/number-card-roguelike/SKILL.md"
     },
     "number-diablo-arpg-like": {
       "title": "刷宝与装备成长",
       "dependencies": [
         "number-orchestrator",
         "number-shared"
-      ]
+      ],
+      "title_en": "Loot ARPG balancing",
+      "description_en": "Balance loot-driven action RPG damage, survivability, equipment upgrades and drop rewards.",
+      "keywords": [
+        "action RPG",
+        "loot balance",
+        "equipment progression",
+        "刷宝数值"
+      ],
+      "path": "skills/number-diablo-arpg-like/SKILL.md"
     },
     "number-legend-like": {
       "title": "长线成长与资源经济",
       "dependencies": [
         "number-orchestrator",
         "number-shared"
-      ]
+      ],
+      "title_en": "Long-term RPG economy",
+      "description_en": "Balance long-term RPG progression, upgrades, loot, trading and competitive power tiers.",
+      "keywords": [
+        "RPG economy",
+        "progression design",
+        "upgrade economy",
+        "长线养成"
+      ],
+      "path": "skills/number-legend-like/SKILL.md"
     },
     "number-orchestrator": {
       "title": "游戏数值实验流程",
       "dependencies": [
         "number-shared"
-      ]
+      ],
+      "title_en": "Game balance experiments",
+      "description_en": "Turn game experience goals into numerical models, tunable parameters and balance experiments.",
+      "keywords": [
+        "game balance",
+        "game economy",
+        "numerical design",
+        "游戏数值"
+      ],
+      "path": "skills/number-orchestrator/SKILL.md"
     },
     "number-shared": {
       "title": "数值口径与计算检查",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Game math validation",
+      "description_en": "Review units, probability, distributions, bounds and sensitivity in game balance formulas.",
+      "keywords": [
+        "game math",
+        "probability",
+        "sensitivity analysis",
+        "概率校验"
+      ],
+      "path": "skills/number-shared/SKILL.md"
     },
     "number-shmup-like": {
       "title": "弹幕压力与火力覆盖",
       "dependencies": [
         "number-orchestrator",
         "number-shared"
-      ]
+      ],
+      "title_en": "Shoot-em-up balancing",
+      "description_en": "Balance shoot-em-up bullet patterns, dodgeability, firepower, survivability and scoring.",
+      "keywords": [
+        "shmup",
+        "bullet hell",
+        "shoot-em-up",
+        "弹幕射击"
+      ],
+      "path": "skills/number-shmup-like/SKILL.md"
     },
     "number-sim-management-like": {
       "title": "生产网络与经营回报",
       "dependencies": [
         "number-orchestrator",
         "number-shared"
-      ]
+      ],
+      "title_en": "Simulation economy balancing",
+      "description_en": "Balance management simulations, factories and idle games through production bottlenecks, inventory and expansion returns.",
+      "keywords": [
+        "management simulation",
+        "factory game",
+        "idle game",
+        "模拟经营"
+      ],
+      "path": "skills/number-sim-management-like/SKILL.md"
     },
     "number-survivor-like": {
       "title": "局内压力与成长反馈",
       "dependencies": [
         "number-orchestrator",
         "number-shared"
-      ]
+      ],
+      "title_en": "Survivor-like balancing",
+      "description_en": "Balance survivor-like horde pressure, upgrade pacing and in-run builds.",
+      "keywords": [
+        "survivor-like",
+        "horde survival",
+        "upgrade pacing",
+        "割草游戏"
+      ],
+      "path": "skills/number-survivor-like/SKILL.md"
     },
     "number-tower-defense-like": {
       "title": "塔防波次与部署取舍",
       "dependencies": [
         "number-orchestrator",
         "number-shared"
-      ]
+      ],
+      "title_en": "Tower defense balancing",
+      "description_en": "Balance tower defense waves, path exposure, targeting, coverage and resource budgets.",
+      "keywords": [
+        "tower defense",
+        "wave design",
+        "tower balance",
+        "塔防数值"
+      ],
+      "path": "skills/number-tower-defense-like/SKILL.md"
     },
     "number-turn-card-like": {
       "title": "回合与阵容成长",
       "dependencies": [
         "number-orchestrator",
         "number-shared"
-      ]
+      ],
+      "title_en": "Turn-based card RPG balancing",
+      "description_en": "Balance turn-based card RPG action economy, speed order, character growth and team composition.",
+      "keywords": [
+        "turn-based combat",
+        "action economy",
+        "team composition",
+        "回合卡牌"
+      ],
+      "path": "skills/number-turn-card-like/SKILL.md"
     },
     "scene-transition": {
       "title": "转场状态与恢复",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Scene loading and transitions",
+      "description_en": "Implement or diagnose scene loading, input handoff, transition effects and failure recovery.",
+      "keywords": [
+        "scene transition",
+        "loading state",
+        "input lock",
+        "场景切换"
+      ],
+      "path": "skills/scene-transition/SKILL.md"
     },
     "screen-shake-effects": {
       "title": "相机冲击反馈",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Screen shake and hit-stop",
+      "description_en": "Design camera shake, hit-stop and impact feedback with stacking limits and reduced-motion settings.",
+      "keywords": [
+        "screen shake",
+        "hit-stop",
+        "game juice",
+        "震屏"
+      ],
+      "path": "skills/screen-shake-effects/SKILL.md"
     },
     "stamina-system": {
       "title": "体力扣费与恢复",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Stamina and energy systems",
+      "description_en": "Design stamina costs, regeneration, caps, offline recovery and duplicate-request handling.",
+      "keywords": [
+        "stamina system",
+        "energy regeneration",
+        "offline recovery",
+        "体力系统"
+      ],
+      "path": "skills/stamina-system/SKILL.md"
     },
     "survival-ui-guidelines": {
       "title": "生存游戏操作界面",
-      "dependencies": []
+      "dependencies": [],
+      "title_en": "Survival crafting UI",
+      "description_en": "Design and review survival game HUD, inventory, crafting and building interfaces.",
+      "keywords": [
+        "survival game",
+        "crafting UI",
+        "game HUD",
+        "生存建造"
+      ],
+      "path": "skills/survival-ui-guidelines/SKILL.md"
     }
   }
 }

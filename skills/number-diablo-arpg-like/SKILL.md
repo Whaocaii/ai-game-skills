@@ -1,6 +1,6 @@
 ---
 name: number-diablo-arpg-like
-description: "用于刷宝 ARPG 的伤害、生存、装备替换与掉落收益；需要结合实际规则验证，不预设通用最优参数。"
+description: "用于刷宝 ARPG 的伤害、生存、装备替换与掉落收益；需要结合实际规则验证，不预设通用最优参数。 Balance loot-driven action RPG damage, survivability, equipment upgrades and drop rewards."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

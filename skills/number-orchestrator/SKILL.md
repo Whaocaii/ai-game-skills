@@ -1,6 +1,6 @@
 ---
 name: number-orchestrator
-description: "把游戏体验目标转成数值模型、可调参数、实验和配置说明。用于新建或调整数值，不代替领域规则与真实试玩。"
+description: "把游戏体验目标转成数值模型、可调参数、实验和配置说明。用于新建或调整数值，不代替领域规则与真实试玩。 Turn game experience goals into numerical models, tunable parameters and balance experiments."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

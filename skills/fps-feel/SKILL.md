@@ -1,6 +1,6 @@
 ---
 name: fps-feel
-description: "改进 FPS 的开火响应、后坐力、散布、命中和换弹反馈。用于枪械手感与故障定位。"
+description: "改进 FPS 的开火响应、后坐力、散布、命中和换弹反馈。用于枪械手感与故障定位。 Improve FPS shooting feel: recoil, spread, hit feedback and reload timing."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

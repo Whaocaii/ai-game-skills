@@ -1,6 +1,6 @@
 ---
 name: number-sim-management-like
-description: "用于模拟经营、工厂与放置玩法的生产瓶颈、库存和扩张回报；需要结合实际规则验证，不预设通用最优参数。"
+description: "用于模拟经营、工厂与放置玩法的生产瓶颈、库存和扩张回报；需要结合实际规则验证，不预设通用最优参数。 Balance management simulations, factories and idle games through production bottlenecks, inventory and expansion returns."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

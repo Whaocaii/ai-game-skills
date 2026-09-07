@@ -1,6 +1,6 @@
 ---
 name: number-adventure-like
-description: "用于冒险、平台、解谜关卡的容错、资源和进度节奏；需要结合实际规则验证，不预设通用最优参数。"
+description: "用于冒险、平台、解谜关卡的容错、资源和进度节奏；需要结合实际规则验证，不预设通用最优参数。 Balance adventure, platformer and puzzle levels through checkpoints, resource pressure and progression."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

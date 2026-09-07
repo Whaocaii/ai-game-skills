@@ -1,6 +1,6 @@
 ---
 name: build-pseudo-live2d-character
-description: "基于单图或图层角色素材制作网页中的呼吸、眨眼和简单动作。用于伪 Live2D 表现；不声称生成 Cubism 模型。"
+description: "基于单图或图层角色素材制作网页中的呼吸、眨眼和简单动作。用于伪 Live2D 表现；不声称生成 Cubism 模型。 Plan browser character animation from a single illustration: breathing, blinking and layered motion; not a Cubism model generator."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

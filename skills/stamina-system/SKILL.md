@@ -1,6 +1,6 @@
 ---
 name: stamina-system
-description: "设计体力消耗、恢复、上限和离线结算，处理重复请求及时间边界。用于体力机制与实现。"
+description: "设计体力消耗、恢复、上限和离线结算，处理重复请求及时间边界。用于体力机制与实现。 Design stamina costs, regeneration, caps, offline recovery and duplicate-request handling."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

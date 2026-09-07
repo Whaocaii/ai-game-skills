@@ -1,6 +1,6 @@
 ---
 name: number-survivor-like
-description: "用于幸存者与割草玩法的敌群压力、升级节奏和局内构筑数值；需要结合实际规则验证，不预设通用最优参数。"
+description: "用于幸存者与割草玩法的敌群压力、升级节奏和局内构筑数值；需要结合实际规则验证，不预设通用最优参数。 Balance survivor-like horde pressure, upgrade pacing and in-run builds."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

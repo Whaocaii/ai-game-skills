@@ -1,6 +1,6 @@
 ---
 name: number-shmup-like
-description: "用于飞行射击游戏的弹幕可避性、火力、容错和得分节奏；需要结合实际规则验证，不预设通用最优参数。"
+description: "用于飞行射击游戏的弹幕可避性、火力、容错和得分节奏；需要结合实际规则验证，不预设通用最优参数。 Balance shoot-em-up bullet patterns, dodgeability, firepower, survivability and scoring."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

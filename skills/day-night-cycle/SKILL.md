@@ -1,6 +1,6 @@
 ---
 name: day-night-cycle
-description: "设计日夜光照、环境颜色和天气过渡，让时间变化保持游戏可读性。用于 3D 或网页场景表现。"
+description: "设计日夜光照、环境颜色和天气过渡，让时间变化保持游戏可读性。用于 3D 或网页场景表现。 Design day-night lighting, weather transitions and readable environmental colors."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

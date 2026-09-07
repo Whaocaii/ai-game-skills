@@ -1,6 +1,6 @@
 ---
 name: improve-arpg-hit-feel
-description: "诊断并改善近战动作的响应、接触、受击与恢复节奏。用于 ARPG 打击感，不仅调伤害或增加特效。"
+description: "诊断并改善近战动作的响应、接触、受击与恢复节奏。用于 ARPG 打击感，不仅调伤害或增加特效。 Diagnose melee combat responsiveness, hit impact, hit reactions and recovery timing."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

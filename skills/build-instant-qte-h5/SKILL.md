@@ -1,6 +1,6 @@
 ---
 name: build-instant-qte-h5
-description: 把题材直接构建成好玩、有真实操作感并经过浏览器试玩验收的移动端瞬时反应 QTE H5，贯穿创意规格、逐游戏数值校准、既有 JSON Schema 交接、coder 实现、静态检查、反自动成功测试、浏览器试玩、缺陷修复和归档交付。用于用户要求生成、实现、试玩或交付完整 QTE H5，而不是只要创意方案时；也可在拆分式管线中作为同一规则包注入 orchestrator、创意、coder 和 QA 阶段。默认不修改既有 coder 接口。
+description: "把题材直接构建成好玩、有真实操作感并经过浏览器试玩验收的移动端瞬时反应 QTE H5，贯穿创意规格、逐游戏数值校准、既有 JSON Schema 交接、coder 实现、静态检查、反自动成功测试、浏览器试玩、缺陷修复和归档交付。用于用户要求生成、实现、试玩或交付完整 QTE H5，而不是只要创意方案时；也可在拆分式管线中作为同一规则包注入 orchestrator、创意、coder 和 QA 阶段。默认不修改既有 coder 接口。 Build and validate mobile HTML5 quick-time event (QTE) games with real player input and browser playtest evidence."
 ---
 
 # 构建瞬时反应 QTE H5 整链路

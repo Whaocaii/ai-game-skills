@@ -1,10 +1,27 @@
-# AI Game Skills
+# AI Game Skills — AI 游戏设计与开发 Agent Skills
 
-**作者与维护者：Whaocaii** · **MIT License** · **版本：0.2.0**
+[中文](README.md) · [English](README.en.md) · [Machine-readable catalog](catalog.json)
+
+**作者与维护者：Whaocaii** · **MIT License** · **版本：0.2.1**
 
 面向 AI 辅助游戏设计与开发的个人 Skill 库。把游戏任务整理成 Agent 可以执行的输入约定、判断步骤、交付要求和检查方法，持续积累数值、系统、交互与表现方面的工作流。
 
 当前提供 **24 个游戏 Skill**。包含 24 个基础工作流，由维护者主导方向，使用 AI 辅助编写与维护。编写说明见 [DEVELOPMENT.md](DEVELOPMENT.md)。
+
+**Agent skills for AI-assisted game design and development:** 24 reusable workflows covering game balancing, game economy, HTML5/H5 quick-time events (QTE), natural-language player actions, inventory, stamina, combat feel and survival crafting UI. Includes Python validators and JavaScript runtime examples. Skill instructions are primarily Chinese, with bilingual discovery descriptions.
+
+## 按需求寻找 Skill
+
+| 你可能使用的搜索词 / Search terms | 对应能力 |
+| --- | --- |
+| AI 游戏策划、游戏数值、game design、game balance、game economy | [数值实验流程](skills/number-orchestrator/SKILL.md) |
+| H5 小游戏、HTML5 game、quick-time event、QTE | [QTE 创意与交付校验](skills/build-instant-qte-h5/SKILL.md) |
+| 自由输入、自然语言行动、free input、LLM game、natural language actions | [自由输入与结算](skills/free-input-output/SKILL.md) |
+| 背包、道具交易、inventory system、item management | [背包状态与交易](skills/inventory-system/SKILL.md) |
+| 打击感、combat feel、hit feedback、game juice | [近战反馈](skills/improve-arpg-hit-feel/SKILL.md)、[震屏](skills/screen-shake-effects/SKILL.md) |
+| 生存建造、survival crafting、game HUD | [生存游戏界面](skills/survival-ui-guidelines/SKILL.md) |
+
+Agent 可读取 [catalog.json](catalog.json) 中的 `title_en`、`description_en`、`keywords` 与 `path` 定位模块，再读取对应 `SKILL.md`。这些是本仓库的检索字段，不要求客户端自动支持。安装方式与能力边界见下文。
 
 ## 适合解决什么问题
 

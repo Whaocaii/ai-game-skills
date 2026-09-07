@@ -1,6 +1,6 @@
 ---
 name: survival-ui-guidelines
-description: "为生存建造玩法组织 HUD、背包、制作和建造界面，减少信息误读与操作中断。用于交互设计和实现评审。"
+description: "为生存建造玩法组织 HUD、背包、制作和建造界面，减少信息误读与操作中断。用于交互设计和实现评审。 Design and review survival game HUD, inventory, crafting and building interfaces."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

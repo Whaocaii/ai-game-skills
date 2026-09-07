@@ -1,6 +1,6 @@
 ---
 name: inventory-system
-description: "设计或实现背包的物品身份、容量、增删、使用、交换和持久化。用于背包规则或故障处理，不默认绑定引擎。"
+description: "设计或实现背包的物品身份、容量、增删、使用、交换和持久化。用于背包规则或故障处理，不默认绑定引擎。 Design inventory capacity, item identity, atomic transactions, equipment exchange and persistence."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

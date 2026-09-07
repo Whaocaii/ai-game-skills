@@ -1,6 +1,6 @@
 ---
 name: number-turn-card-like
-description: "用于回合卡牌的行动经济、速度顺序、角色培养和阵容替换数值；需要结合实际规则验证，不预设通用最优参数。"
+description: "用于回合卡牌的行动经济、速度顺序、角色培养和阵容替换数值；需要结合实际规则验证，不预设通用最优参数。 Balance turn-based card RPG action economy, speed order, character growth and team composition."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"

@@ -1,6 +1,6 @@
 ---
 name: day-time-system
-description: "管理游戏模拟时间、天数、时间倍率、暂停和离线推进。用于逻辑时间，不负责太阳天空表现。"
+description: "管理游戏模拟时间、天数、时间倍率、暂停和离线推进。用于逻辑时间，不负责太阳天空表现。 Design game time, time scale, pause, day rollover and offline progression; use for simulation logic."
 metadata:
   author: "Whaocaii"
   revision: "0.1.0"
